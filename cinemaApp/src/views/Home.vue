@@ -136,7 +136,8 @@ export default {
       filters: ["Edad", "Género", "Duración"],
       items: [
         { title: "Inicio", icon: "mdi-home", link: "/" },
-        { title: "Ayuda", icon: "mdi-help", link: "/" }
+        { title: "Ayuda", icon: "mdi-help", link: "/" },
+        { title: "Entradas", icon: "mdi-ticket-confirmation", link: "/entradas" }
       ],
       videos: [
         {
