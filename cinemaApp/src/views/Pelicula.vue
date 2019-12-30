@@ -72,7 +72,75 @@
     </v-container>
     <!--/ENDOFSelector-->
     <!--TresCol Información Película-->
-    
+    <v-container>
+      <v-row>
+        <v-col 
+          cols="12"
+          sm="4">
+          <v-card
+            class="pa-2"
+            
+            tile
+            
+          >
+          SINOPSIS:
+          <p>{{film.sinopsis}}</p>
+          </v-card>
+        </v-col>
+        <v-col 
+          cols="12"
+          sm="4">
+          <v-card
+            class="pa-2"
+            
+            tile
+            
+          >
+          REPARTO:
+          <p></p>
+          </v-card>
+        </v-col>
+        <v-col 
+          cols="12"
+          sm="4">
+          <v-card
+            class="pa-2"
+            
+            tile
+            
+          >
+          IMG:
+          
+            <v-carousel
+              v-model="model"
+              :show-arrows="showArrows"
+              :hide-delimiters="hideDelimiters"
+              :cycle="cycle"
+            >
+              <v-carousel-item
+                v-for="(imagen, i) in imagenes"
+                :key="imagen"
+              >
+                <v-sheet
+                  :color="white"
+                  height="40%"
+                  tile
+                >
+                  <v-row
+                    class="fill-height"
+                    align="center"
+                    justify="center"
+                  >
+                    <div class="display-3">Img {{ i + 1 }}</div>
+                  </v-row>
+                </v-sheet>
+              </v-carousel-item>
+            </v-carousel>
+
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
     <!--/ENDOF info-->
     <v-navigation-drawer absolute temporary v-model="drawer" class="grey darken-4" dark>
       <v-list-item>
@@ -117,11 +185,21 @@ export default {
       emision: {
         content: "En el cine desde el 1 de Enero"
       },
+      film:{
+        sinopsis: "Una profecía condena al reino de Arandelle a vivir en un invierno eterno. La joven Anna, el temerario montañero Kristoff y el reno Sven deben emprender un viaje épico y lleno de aventuras en busca de Elsa, la hermana de Anna y Reina de las Nieves. Ella es la única que puede poner fin al gélido hechizo.",
+        reparto: "",
+        img: "",
+      },
       sesiones: [
         'primera',
         'segunda',
         'tercera',
         'noche',
+      ],
+      imagenes:[
+        'prime',
+        'seg',
+        'ter',
       ],
       model: 0,
       showArrows: true,
@@ -157,6 +235,10 @@ export default {
 };
 .txt {
   color: #FFF;
+}
+.infoP {
+  color: #000;
+  background-color: #FFF;
 }
 </style>
 
