@@ -137,7 +137,8 @@ export default {
       items: [
         { title: "Inicio", icon: "mdi-home", link: "/" },
         { title: "Ayuda", icon: "mdi-help", link: "/" },
-        { title: "Entradas", icon: "mdi-ticket-confirmation", link: "/entradas" }
+        { title: "Entradas", icon: "mdi-ticket-confirmation", link: "/entradas" },
+        { title: "Pelicula", icon: "mdi-film", link: "/pelicula" }
       ],
       videos: [
         {
