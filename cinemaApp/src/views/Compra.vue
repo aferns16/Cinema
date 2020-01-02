@@ -46,11 +46,11 @@
               >
                 <v-tab class="title font-weight-light" ripple>
                   <span style="padding-right:20px">Tarjeta</span>
-                  <v-icon>fas fa-credit-card</v-icon>
+                  <vue-fontawesome icon="credit-card"></vue-fontawesome>
                 </v-tab>
                 <v-tab class="title font-weight-light" ripple>
                   <span style="padding-right:20px">PayPal</span>
-                  <v-icon>fab fa-paypal</v-icon>
+                  <vue-fontawesome icon="paypal"></vue-fontawesome>
                 </v-tab>
 
                 <v-tab-item>
@@ -59,11 +59,7 @@
                     <v-card-text>
                       <v-container>
                         <v-row align="center" justify="space-around">
-                          <v-icon v-for="icon in icons" :key="icon" large>
-                            {{
-                            icon
-                            }}
-                          </v-icon>
+                          <vue-fontawesome v-for="icon in icons" :key="icon" :icon="icon" size="3"></vue-fontawesome>
                         </v-row>
                       </v-container>
                       <v-form>
@@ -76,7 +72,7 @@
                           name="nombre del titular"
                           label="Nombre del titular"
                           type="text"
-                          hint="Required field"
+                          hint="Requerido"
                           clearable
                           required
                         ></v-text-field>
@@ -85,10 +81,10 @@
                           rounded
                           dense
                           color="#78909C"
-                          append-icon="fas fa-credit-card"
+                          append-icon="mdi-credit-card"
                           label="Número de tarjeta"
                           type="text"
-                          hint="Required field"
+                          hint="Requerido"
                           clearable
                           required
                         ></v-text-field>
@@ -135,7 +131,7 @@
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
                                 <v-btn icon depressed v-on="on">
-                                  <v-icon color="grey">far fa-question-circle</v-icon>
+                                  <vue-fontawesome icon="question-circle" color="grey" size="2"></vue-fontawesome>
                                 </v-btn>
                               </template>
                               <span>
@@ -154,7 +150,7 @@
                               name="CVC"
                               label="CVC"
                               type="text"
-                              hint="Required field"
+                              hint="Requerido"
                               clearable
                               required
                             ></v-text-field>
@@ -181,7 +177,7 @@
                     <v-card-text>
                       <v-container>
                         <v-row align="center" justify="space-around">
-                          <v-icon x-large>fab fa-cc-paypal</v-icon>
+                          <vue-fontawesome icon="cc-paypal" size="3"></vue-fontawesome>
                         </v-row>
                       </v-container>
                       <v-form>
@@ -194,7 +190,7 @@
                           name="e-mail de la cuenta"
                           label="E-mail de la cuenta"
                           type="text"
-                          hint="Required field"
+                          hint="Requerido"
                           clearable
                           required
                         ></v-text-field>
@@ -207,7 +203,7 @@
                           name="contraseña"
                           label="Contraseña"
                           type="password"
-                          hint="Required field"
+                          hint="Requerido"
                           clearable
                           required
                         ></v-text-field>
@@ -247,12 +243,7 @@ export default {
     hovering: false,
     showToolTip: false,
     defaultCard: "fas fa-credit-card",
-    icons: [
-      "fab fa-cc-visa",
-      "fab fa-cc-amex",
-      "fab fa-cc-mastercard",
-      "fab fa-cc-discover"
-    ],
+    icons: ["cc-visa", "cc-amex", "cc-mastercard", "cc-discover"],
     compra: [{ name: "Entrada FROZEN 2", price: 6 }],
     descuentos: [{ name: "Descuento estudiantes", price: -1.2 }]
   })

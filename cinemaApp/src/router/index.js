@@ -1,34 +1,45 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Entradas from '../views/Entradas.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Principal from "../views/Principal.vue";
+import Pelicula from "../views/Pelicula.vue";
+import Entradas from "../views/Entradas.vue";
+import Compra from "../views/Compra.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-
-  {
-    path: '/entradas',
-    name: 'entradas',
-    component: Entradas
-  }, 
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: "/",
+    name: "Home",
+    component: Home,
+    children: [
+      {
+        path: "/",
+        name: "Principal",
+        component: Principal
+      },
+      {
+        path: "/pelicula",
+        name: "Pelicula",
+        component: Pelicula
+      },
+      {
+        path: "/entradas",
+        name: "Entradas",
+        component: Entradas
+      },
+      {
+        path: "/compra",
+        name: "Compra",
+        component: Compra
+      }
+    ]
   }
-]
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;
