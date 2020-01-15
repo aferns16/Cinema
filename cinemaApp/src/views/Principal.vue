@@ -32,8 +32,6 @@
           <v-text-field
             dark
             clearable
-            rounded
-            outlined
             dense
             label="Buscar"
             bottom
@@ -41,15 +39,9 @@
             v-on:keyup.enter="onEnterFind"
           ></v-text-field>
         </v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-toolbar-title>
-          <v-combobox
-            :items="filters"
-            outlined
-            dense
-            rounded
-            label="Filtrar"
-            v-on:keyup.enter="onEnterFilter"
-          ></v-combobox>
+          <v-combobox :items="filters" dense label="Filtrar" v-on:keyup.enter="onEnterFilter"></v-combobox>
         </v-toolbar-title>
       </v-toolbar>
     </v-card>
@@ -58,10 +50,16 @@
     <v-content>
       <v-container grid-list-md text-xs-center fluid>
         <v-layout wrap fill-width fill-height>
-          <v-flex v-for="pelicula in this.cartelera" :key="pelicula.id" xs3 d-flex>
-            <v-card dark>
+          <v-flex v-for="pelicula in filteredList" :key="pelicula.id" xs3 d-flex>
+            <v-card dark to="Pelicula">
               <v-hover v-slot:default="{ hover }">
-                <v-img :src="pelicula.src" height="400px" width="300px" aspect-ratio="1.7">
+                <v-img
+                  :src="pelicula.src"
+                  height="500px"
+                  width="400px"
+                  aspect-ratio="1.7"
+                  :alt="pelicula.alt"
+                >
                   <v-expand-transition>
                     <div
                       v-if="hover"
@@ -71,13 +69,6 @@
                   </v-expand-transition>
                 </v-img>
               </v-hover>
-              <v-card-title>
-                <v-btn>18:30</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn>20:30</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn>22:30</v-btn>
-              </v-card-title>
             </v-card>
           </v-flex>
         </v-layout>
@@ -89,13 +80,8 @@
 export default {
   data() {
     return {
-      drawer: false,
       busqueda: "",
       filters: ["Edad", "Género", "Duración"],
-      items: [
-        { title: "Inicio", icon: "mdi-home", link: "/" },
-        { title: "Ayuda", icon: "mdi-help", link: "/" }
-      ],
       videos: [
         {
           videoId: "I-oJ5QjrX9M",
@@ -106,7 +92,19 @@ export default {
         {
           videoId: "EIyZqNbZQI8",
           playerVars: {
-            autoplay: 1
+            autoplay: 0
+          }
+        },
+        {
+          videoId: "eSdIUJNHdDQ",
+          playerVars: {
+            autoplay: 0
+          }
+        },
+        {
+          videoId: "BKuDz3pxi7I",
+          playerVars: {
+            autoplay: 0
           }
         }
       ],
@@ -115,25 +113,61 @@ export default {
           id: 1,
           src:
             "http://t0.gstatic.com/images?q=tbn:ANd9GcQwgyIDw4ct01q0nypl45AwVR099Wv0F5erPDKH-oYu7pdmEsZC",
-          title: "Frozen 2"
+          title: "Frozen 2",
+          alt: "Póster de la película Frozen 2, con Elsa y Anna en él"
         },
         {
           id: 2,
           src:
             "http://t3.gstatic.com/images?q=tbn:ANd9GcQrGZ9MLLOUkK5Fa-5-zxfyqNdE15-p52rm3ahwac1PSNdfqnxm",
-          title: "Joker"
+          title: "Joker",
+          alt: "Póster de la película Joker, aparece media cara del actor"
         },
         {
           id: 3,
           src:
             "http://t1.gstatic.com/images?q=tbn:ANd9GcSSNLT6kxt0xGjjrAf2J4_Et7jW8ZFPDOuNZKr_9Tjsna36iruz",
-          title: "Last Christmas"
+          title: "Last Christmas",
+          alt:
+            "Póster de la película Last Christmas, donde aparecen un hombre y una mujer"
         },
         {
           id: 4,
           src:
             "http://t0.gstatic.com/images?q=tbn:ANd9GcSQ7YhkPor0ZN40AdSeTr-XGb9eSq_jqObwPqC_90wDXscoRF4Z",
-          title: "Maléfica: Maestra del Mal"
+          title: "Maléfica: Maestra del Mal",
+          alt:
+            "Póster de la película Maléfica: Maestra del Mal, con ella como protagonista"
+        },
+        {
+          id: 5,
+          src:
+            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/star-wars-episode-vii-the-force-awakens-1541413640.png?crop=1xw:1xh;center,top&resize=480:*",
+          title: "Star Wars: Episodio IX",
+          alt:
+            "Póster de la película Star Wars: Episodio IX con todos los personajes en él"
+        },
+        {
+          id: 6,
+          src:
+            "https://poster.ninja/wp-content/uploads/2019/09/Dwayne-Johnson-Jack-Black-Kevin-Hart-Karen-Gillan-Jumanji-The-Next-Level-2019-Movie-Poster.jpg",
+          title: "Jumanji: Next Level",
+          alt:
+            "Póster de la película Jumanji: Next Level con los 4 protagonistas"
+        },
+        {
+          id: 7,
+          src:
+            "http://es.web.img3.acsta.net/pictures/19/09/06/09/26/4050119.jpg",
+          title: "Jojo Rabbit",
+          alt: "Póster de la película Jojo Rabbit con los personajes"
+        },
+        {
+          id: 8,
+          src:
+            "https://www.metro951.com/wp-content/uploads/2019/10/Mujercitas1-583x700.jpg",
+          title: "Mujercitas",
+          alt: "Póster de la película Mujercitas con las 4 protagonistas"
         }
       ]
     };
@@ -141,6 +175,15 @@ export default {
   methods: {
     onEnterFind: function() {},
     onEnterFilter: function() {}
+  },
+  computed: {
+    filteredList() {
+      return this.cartelera.filter(post => {
+        if (this.busqueda == null) return post.title.toLowerCase();
+        else
+          return post.title.toLowerCase().includes(this.busqueda.toLowerCase());
+      });
+    }
   }
 };
 </script>

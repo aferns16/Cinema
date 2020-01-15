@@ -1,17 +1,17 @@
 <template>
   <v-app style="background: black">
     <v-content>
-      <v-container>
-        <v-row>
+      <v-container wrap>
+        <v-row justify-center align-center>
           <v-col>
             <v-toolbar dark height="150px" color="black">
               <v-toolbar-title style="font-size: 50pt; font-family: 'Helvetica'; ">Asientos</v-toolbar-title>
             </v-toolbar>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row justify-center align-center>
           <v-col>
-            <table cellspacing="0">
+            <table>
               <tr>
                 <td>
                   <font color="white">Número de entradas:</font>
@@ -68,17 +68,35 @@
         </v-row>
 
         <v-row>
-          <v-content>
-            <v-img
-              align-center
-              justify-center
-              :src="asientosDisponibles[0].src"
-              height="600px"
-              width="800px"
-            >
-              <div style="height: 100%;"></div>
-            </v-img>
-          </v-content>
+          <v-col></v-col>
+          <v-col>
+            <v-content>
+              <v-img
+                align-center
+                justify-center
+                :src="asientosDisponibles"
+                height="900px"
+                width="1100px"
+              >
+                <div style="height: 100%;"></div>
+              </v-img>
+            </v-content>
+          </v-col>
+          <v-col></v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn to="Pelicula" dark>Volver</v-btn>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-col>
+            <v-btn to="Compra" dark>Continuar</v-btn>
+          </v-col>
         </v-row>
       </v-container>
     </v-content>
@@ -97,14 +115,8 @@ export default {
       precio: 6,
       filters1: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
       filters: ["Ninguno", "Estudiante", "Jubilado", "Familia numerosa"],
-      asientosDisponibles: [
-        {
-          id: 1,
-          src:
-            "http://gobiznext.com/wp-content/uploads/2016/10/Mejores-lugares.jpg",
-          asiento: "Asientos disponibles"
-        }
-      ]
+      asientosDisponibles:
+        "http://gobiznext.com/wp-content/uploads/2016/10/Mejores-lugares.jpg"
     };
   },
   computed: {

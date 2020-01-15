@@ -3,7 +3,7 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
-          <v-flex xs6>
+          <v-flex sm10>
             <v-card color="black" tile flat>
               <v-card-title class="headline white--text font-weight-light">ZONA DE PAGO</v-card-title>
               <v-card tile flat dark>
@@ -68,8 +68,10 @@
                           rounded
                           dense
                           color="#78909C"
+                          v-model="TNumber"
+                          :rules="rules.TNumber"
                           append-icon="mdi-account-card-details"
-                          name="nombre del titular"
+                          name="Nombre del titular"
                           label="Nombre del titular"
                           type="text"
                           hint="Requerido"
@@ -80,6 +82,8 @@
                           filled
                           rounded
                           dense
+                          v-model="cardNumber"
+                          :rules="rules.cardNumber"
                           color="#78909C"
                           append-icon="mdi-credit-card"
                           label="Número de tarjeta"
@@ -145,6 +149,8 @@
                               filled
                               rounded
                               dense
+                              v-model="CVC"
+                              :rules="rules.CVC"
                               color="#78909C"
                               prepend-inner-icon="mdi-lock"
                               name="CVC"
@@ -157,7 +163,11 @@
                           </v-col>
                         </v-row>
 
-                        <v-checkbox color="green" label="Acepto los términos y condiciones."></v-checkbox>
+                        <v-checkbox
+                          color="green"
+                          v-model="termsC"
+                          label="Acepto los términos y condiciones."
+                        ></v-checkbox>
                       </v-form>
                     </v-card-text>
                     <v-card-actions>
@@ -165,7 +175,30 @@
                         <v-row>
                           <v-btn rounded depressed outlined dark color="grey darken-3">Cancelar</v-btn>
                           <v-spacer></v-spacer>
-                          <v-btn rounded depressed dark color="grey darken-3">Pagar con tarjeta</v-btn>
+                          <v-dialog v-model="dialog" width="500">
+                            <template v-slot:activator="{ on }">
+                              <v-btn
+                                rounded
+                                depressed
+                                :disabled="!CardIsValid"
+                                dark
+                                color="grey darken-3"
+                                v-on="on"
+                              >Pagar con tarjeta</v-btn>
+                            </template>
+
+                            <v-card>
+                              <v-card-title
+                                class="headline grey lighten-2"
+                                primary-title
+                              >El pago se ha producido correctamente</v-card-title>
+
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" text to="/">Aceptar</v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </v-dialog>
                         </v-row>
                       </v-container>
                     </v-card-actions>
@@ -191,6 +224,8 @@
                           label="E-mail de la cuenta"
                           type="text"
                           hint="Requerido"
+                          v-model="email"
+                          :rules="rules.email"
                           clearable
                           required
                         ></v-text-field>
@@ -198,17 +233,23 @@
                           filled
                           rounded
                           dense
+                          v-model="pass"
                           color="#78909C"
                           append-icon="mdi-lock"
                           name="contraseña"
                           label="Contraseña"
                           type="password"
                           hint="Requerido"
+                          :rules="rules.pass"
                           clearable
                           required
                         ></v-text-field>
                       </v-form>
-                      <v-checkbox color="green" label="Acepto los términos y condiciones."></v-checkbox>
+                      <v-checkbox
+                        color="green"
+                        v-model="terms"
+                        label="Acepto los términos y condiciones."
+                      ></v-checkbox>
                     </v-card-text>
                     <v-toolbar flat class="white--text" color="rgb(255,255,255,0)"></v-toolbar>
                     <v-card-actions>
@@ -216,7 +257,30 @@
                         <v-row>
                           <v-btn rounded depressed outlined dark color="grey darken-3">Cancelar</v-btn>
                           <v-spacer></v-spacer>
-                          <v-btn rounded depressed dark color="grey darken-3">Pagar con PayPal</v-btn>
+                          <v-dialog v-model="dialog" width="500">
+                            <template v-slot:activator="{ on }">
+                              <v-btn
+                                v-on="on"
+                                rounded
+                                depressed
+                                dark
+                                color="grey darken-3"
+                                :disabled="!PayPalIsValid"
+                              >Pagar con PayPal</v-btn>
+                            </template>
+
+                            <v-card>
+                              <v-card-title
+                                class="headline grey lighten-2"
+                                primary-title
+                              >El pago se ha producido correctamente</v-card-title>
+
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" text to="/">Aceptar</v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </v-dialog>
                         </v-row>
                       </v-container>
                     </v-card-actions>
@@ -233,8 +297,15 @@
 <script>
 export default {
   data: () => ({
+    dialog: false,
     model: "tab-2",
+    pass: "",
+    email: "",
+    terms: false,
+    termsC: false,
+    TNumber: "",
     cardNumber: "",
+    CVC: "",
     alert: false,
     alertContent: "",
     date: new Date().toISOString().substr(0, 7),
@@ -245,8 +316,23 @@ export default {
     defaultCard: "fas fa-credit-card",
     icons: ["cc-visa", "cc-amex", "cc-mastercard", "cc-discover"],
     compra: [{ name: "Entrada FROZEN 2", price: 6 }],
-    descuentos: [{ name: "Descuento estudiantes", price: -1.2 }]
-  })
+    descuentos: [{ name: "Descuento estudiantes", price: -1.2 }],
+    rules: {
+      pass: [val => (val || "").length > 0 || "Requerido"],
+      email: [val => (val || "").length > 0 || "Requerido"],
+      cardNumber: [val => (val || "").length > 0 || "Requerido"],
+      TNumber: [val => (val || "").length > 0 || "Requerido"],
+      CVC: [val => (val || "").length > 0 || "Requerido"]
+    }
+  }),
+  computed: {
+    PayPalIsValid() {
+      return this.pass && this.email && this.terms;
+    },
+    CardIsValid() {
+      return this.cardNumber && this.termsC && this.TNumber && this.CVC;
+    }
+  }
 };
 </script>
 <style scoped type="text/css">
