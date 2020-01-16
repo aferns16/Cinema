@@ -179,7 +179,8 @@ export default {
         idVideo:"I-oJ5QjrX9M",
         director: "Chris Buck, Jennifer Lee",
         pais: "EEUU",
-        reparto:"Voces: Walt Disney, Marcellite Garner, Billy Bletcher"
+        reparto:"Voces: Walt Disney, Marcellite Garner, Billy Bletcher",
+        alt: "Película Frozen: El Reino del Hielo. Estreno el 29 de Noviembre de 2013."
         },
         {
         titulo: "Joker",
@@ -191,7 +192,8 @@ export default {
         idVideo:"-_DJEzZk2pc",
         director: "Todd Phillips",
         pais: "EEUU, Canadá",
-        reparto:"Joaquin Phoenix, Robert De Niro, Zazie Beetz, Brett Cullen, Shea Whigham, Douglas Hodge, Glenn Fleshler, y Frances Conroy."
+        reparto:"Joaquin Phoenix, Robert De Niro, Zazie Beetz, Brett Cullen, Shea Whigham, Douglas Hodge, Glenn Fleshler, y Frances Conroy.",
+        alt: "Película Joker. Estreno el 4 de Octubre de 2019."
         },
         {
         titulo: "Last Christmas",  
@@ -203,7 +205,8 @@ export default {
         idVideo:"z9CEIcmWmtA",
         director:"Paul Feig",
         pais: "Gran Bretaña, EEUU",
-        reparto:"Emilia Clarke, Henry Golding, Emma Thompson, Michelle Yeoh."
+        reparto:"Emilia Clarke, Henry Golding, Emma Thompson, Michelle Yeoh.",
+        alt: "Película Last Christmas. Estreno el 29 de Noviembre de 2019"
         },
         {
         titulo: "Maléfica: Maestra del Mal",  
@@ -215,7 +218,8 @@ export default {
         idVideo:"trQ2Ft_A478",
         director: "Joachim Ronning",
         pais: "EEUU",
-        reparto:"Angelina Jolie, Elle Fanning, Michelle Pfeiffer, Chiwetel Ejiofor, Ed Skrein, Juno Temple, Sam Riley, Harris Dickinson, Robert Lindsay, e Imelda Staunton"
+        reparto:"Angelina Jolie, Elle Fanning, Michelle Pfeiffer, Chiwetel Ejiofor, Ed Skrein, Juno Temple, Sam Riley, Harris Dickinson, Robert Lindsay, e Imelda Staunton",
+        alt: "Película Maléfica Maestra del Mal. Estreno el 18 de Octubre de 2019"
         },
         {
         titulo: "Star Wars: Episodio IX El Ascenso de Skywalker",  
@@ -227,7 +231,8 @@ export default {
         idVideo:"Izme__ZsURY",
         director: "J.J. Abrams",
         pais: "EEUU",
-        reparto:"Carrie Fisher (fallecida en 2016), Mark Hamill, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Anthony Daniels, Naomie Ackie, Domhnall Gleeson, Richard E. Grant, Lupita Nyong'o, Keri Russell, Joonas Suotamo, Kelly Marie Tran, Ian McDiarmid y Billy Dee Williams."
+        reparto:"Carrie Fisher (fallecida en 2016), Mark Hamill, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Anthony Daniels, Naomie Ackie, Domhnall Gleeson, Richard E. Grant, Lupita Nyong'o, Keri Russell, Joonas Suotamo, Kelly Marie Tran, Ian McDiarmid y Billy Dee Williams.",
+        alt: "Película Star Wars Episodio 9: El Ascenso de Skywalker. Estreno el 19 de Diciembre de 2019"
         },
         {
         titulo: "Jumanji: The Next Level",  
@@ -239,7 +244,8 @@ export default {
         idVideo:"rBxcF-r9Ibs",
         director:"Jake Kasdan",
         pais:"EEUU",
-        reparto:"Dwayne Johnson, Kevin Hart, Jack Black, Karen Gillan, Nick Jonas, Ser'Darius Blain, Madison Iseman, Morgan Turner y Alex Wolff, Awkwafina, Danny Glover y Danny DeVito."
+        reparto:"Dwayne Johnson, Kevin Hart, Jack Black, Karen Gillan, Nick Jonas, Ser'Darius Blain, Madison Iseman, Morgan Turner y Alex Wolff, Awkwafina, Danny Glover y Danny DeVito.",
+        alt: "Película Jumanji: El Siguiente Nivel. Estreno el 13 de Diciembre de 2019"
         },
         {
         titulo: "Jojo Rabbit",  
@@ -251,7 +257,8 @@ export default {
         idVideo:"tL4McUzXfFI",
         director: "Taika Waititi",
         pais:"EEUU",
-        reparto:" Roman Griffin Davis, Thomasin McKenzie, Taika Waititi."
+        reparto:" Roman Griffin Davis, Thomasin McKenzie, Taika Waititi.",
+        alt: "Película Jojo Rabbit. Estreno el 17 de Enero de 2020"
         },
         {
         titulo: "Mujercitas",  
@@ -263,7 +270,8 @@ export default {
         idVideo:"6SN9-6uST80",
         director: "Greta Gerwig",
         pais: "EEUU",
-        reparto:" Saoirse Ronan, Emma Watson, Florence Pugh."
+        reparto:" Saoirse Ronan, Emma Watson, Florence Pugh.",
+        alt: "Película Mujercitas. Estreno el 25 de Diciembre de 2019"
         },
       ],
       /*film:{
