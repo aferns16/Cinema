@@ -51,7 +51,7 @@
       <v-container grid-list-md text-xs-center fluid>
         <v-layout wrap fill-width fill-height>
           <v-flex v-for="pelicula in filteredList" :key="pelicula.id" xs3 d-flex>
-            <v-card dark to="Pelicula">
+            <v-card dark @click="toPelicula(pelicula.title)">
               <v-hover v-slot:default="{ hover }">
                 <v-img
                   :src="pelicula.src"
@@ -174,7 +174,12 @@ export default {
   },
   methods: {
     onEnterFind: function() {},
-    onEnterFilter: function() {}
+    onEnterFilter: function() {},
+    toPelicula: function(title) {
+      this.$store.dispatch("setPelicula", title).then(() => {
+        this.$router.push({ name: "Pelicula" });
+      });
+    }
   },
   computed: {
     filteredList() {

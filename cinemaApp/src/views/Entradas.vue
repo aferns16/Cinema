@@ -14,7 +14,7 @@
             <table>
               <tr>
                 <td>
-                  <font color="white">Número de entradas:</font>
+                  <font v-bind:style="{ fontSize: 15}" color="white">Número de entradas:</font>
                 </td>
 
                 <td>
@@ -122,9 +122,9 @@ export default {
   computed: {
     precioTotal: function() {
       var precio = this.entradas * this.precio;
-      if (this.descuentos == "Familia numerosa") precio -= 1.4;
-      if (this.descuentos == "Jubilado") precio -= 1.0;
-      if (this.descuentos == "Estudiante") precio -= 1.2;
+      if (this.descuentos == "Familia numerosa") precio -= 1.4 * this.entradas;
+      if (this.descuentos == "Jubilado") precio -= 1.0 * this.entradas;
+      if (this.descuentos == "Estudiante") precio -= 1.2 * this.entradas;
       return precio + " €";
     },
     precioEntrada: function() {
@@ -137,5 +137,10 @@ export default {
 <style type="text/css">
 td {
   padding: 0 200px 0 0;
+  font-size: 150%;
+}
+
+.v-text-field {
+  font-size: 90%;
 }
 </style>

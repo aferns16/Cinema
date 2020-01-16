@@ -68,6 +68,21 @@
                           rounded
                           dense
                           color="#78909C"
+                          append-icon="mdi-at"
+                          name="e-mail"
+                          label="E-mail"
+                          type="text"
+                          hint="Requerido"
+                          v-model="emailC"
+                          :rules="rules.emailC"
+                          clearable
+                          required
+                        ></v-text-field>
+                        <v-text-field
+                          filled
+                          rounded
+                          dense
+                          color="#78909C"
                           v-model="TNumber"
                           :rules="rules.TNumber"
                           append-icon="mdi-account-card-details"
@@ -305,6 +320,7 @@ export default {
     termsC: false,
     TNumber: "",
     cardNumber: "",
+    emailC: "",
     CVC: "",
     alert: false,
     alertContent: "",
@@ -322,7 +338,8 @@ export default {
       email: [val => (val || "").length > 0 || "Requerido"],
       cardNumber: [val => (val || "").length > 0 || "Requerido"],
       TNumber: [val => (val || "").length > 0 || "Requerido"],
-      CVC: [val => (val || "").length > 0 || "Requerido"]
+      CVC: [val => (val || "").length > 0 || "Requerido"],
+      emailC: [val => (val || "").length > 0 || "Requerido"]
     }
   }),
   computed: {
@@ -330,7 +347,13 @@ export default {
       return this.pass && this.email && this.terms;
     },
     CardIsValid() {
-      return this.cardNumber && this.termsC && this.TNumber && this.CVC;
+      return (
+        this.cardNumber &&
+        this.termsC &&
+        this.TNumber &&
+        this.CVC &&
+        this.emailC
+      );
     }
   }
 };
