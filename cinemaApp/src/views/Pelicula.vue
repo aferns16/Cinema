@@ -24,7 +24,6 @@
         <v-col></v-col>
       </v-row>
     </v-container>
-    <!--Selector de sesión para comprar entrada-->
     <v-container>
       <p>
         <span style="color: #FFFF">{{pelicula.titulo.toUpperCase()}}</span>
@@ -34,11 +33,15 @@
           style="color: #FFFF"
         >Director: {{pelicula.director}} | País: {{pelicula.pais}} | Duración: {{pelicula.duracion}} | Fecha de estreno: {{pelicula.estreno}} | Género: {{pelicula.genero}}</span>
       </p>
+      <!--Selector de sesión para comprar entrada-->
       <v-carousel :show-arrows="showArrows" :hide-delimiters="hideDelimiters" :cycle="cycle">
         <v-carousel-item v-for="(sesion, i) in sesiones" :key="sesion">
           <v-sheet color="black" height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">{{ sesiones[i] }}</div>
+              <div class="display-3">
+                {{ sesiones[i]}}
+                <v-img :alt='altTicket' aspect-ratio="1.7" height="50px" width="50px" :src="imgTicket" @click="compra"></v-img>
+              </div>
             </v-row>
           </v-sheet>
         </v-carousel-item>
@@ -255,8 +258,10 @@ export default {
         "Primera Sesión: 16:30",
         "Segunda Sesión: 18:30",
         "Tercera Sesión: 20:30",
-        "Sesión de Noche: 22:30"
+        "Sesión de Noche: 22:30",
       ],
+      imgTicket: "https://raw.githubusercontent.com/aferns16/Cinema/master/cinemaApp/src/assets/ticket.jpg?token=AF4O43NXYJRFSXMOTWCWULS6FLHLA",
+      altTicket: "Ticket: Comprar entrada para esta sesión",
       imagenes: ["prime", "seg", "ter"],
       showArrows: true,
       hideDelimiters: false,
@@ -264,6 +269,10 @@ export default {
     };
   },
   methods: {
+    compra: function() {
+      alert("Comprar esta sesion");
+      this.$router.push("Entradas");
+    },
     onEnterFind: function() {
       alert("Enter was pressed");
     },
