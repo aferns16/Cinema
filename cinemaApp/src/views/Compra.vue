@@ -371,6 +371,10 @@ export default {
         this.emailC
       );
     }
+  },
+
+  mounted() {
+    document.documentElement.scrollTop = 0;
   }
 };
 </script>
