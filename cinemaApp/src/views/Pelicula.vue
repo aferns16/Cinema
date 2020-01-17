@@ -142,7 +142,7 @@ export default {
           genero: "Drama",
           sinopsisPelicula:
             "Joker mostrará por primera vez los orígenes del icónico archienemigo por excelencia de Bruce Wayne/Batman. La historia sigue de cerca la vida de Arthur Fleck (Joaquin Phoenix), un hombre con problemas psiquiátricos que vivirá una serie de acontecimientos que le harán convertirse en uno de los grandes villanos de DC Comics. El Príncipe Payaso del Crimen se cruzará en el camino de Thomas Wayne (Brett Cullen) y se acercará a su hijo, el futuro Caballero Oscuro en su versión joven (Dante Pereira-Olson).",
-          idVideo: "-_DJEzZk2pc",
+          idVideo: "EIyZqNbZQI8",
           director: "Todd Phillips",
           pais: "EEUU, Canadá",
           reparto:
