@@ -383,4 +383,7 @@ header {
   opacity: 0.3;
   background-color: #907a55;
 }
+.v-text-field {
+  font-size: 130%;
+}
 </style>
