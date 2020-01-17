@@ -205,7 +205,6 @@
                   <v-card-actions>
                     <v-container>
                       <v-row>
-                        <v-btn rounded depressed outlined dark color="grey darken-3">Cancelar</v-btn>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" width="500">
                           <template v-slot:activator="{ on }">
@@ -220,10 +219,11 @@
                           </template>
 
                           <v-card>
-                            <v-card-title
-                              class="headline grey lighten-2"
-                              primary-title
-                            >El pago se ha producido correctamente</v-card-title>
+                            <v-card-title class="headline grey lighten-2" primary-title>
+                              El pago se ha producido correctamente.
+                              <br />Las entradas se han enviado al correo
+                              <br />que ha introducido
+                            </v-card-title>
 
                             <v-card-actions>
                               <v-spacer></v-spacer>
@@ -287,7 +287,6 @@
                   <v-card-actions>
                     <v-container>
                       <v-row>
-                        <v-btn rounded depressed outlined dark color="grey darken-3">Cancelar</v-btn>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" width="500">
                           <template v-slot:activator="{ on }">
@@ -302,10 +301,11 @@
                           </template>
 
                           <v-card>
-                            <v-card-title
-                              class="headline grey lighten-2"
-                              primary-title
-                            >El pago se ha producido correctamente</v-card-title>
+                            <v-card-title class="headline grey lighten-2" primary-title>
+                              El pago se ha producido correctamente.
+                              <br />Las entradas se han enviado al correo
+                              <br />que ha introducido
+                            </v-card-title>
 
                             <v-card-actions>
                               <v-spacer></v-spacer>

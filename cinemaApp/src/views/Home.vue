@@ -9,7 +9,7 @@
             depressed
             style="font-size: 20pt; font-family: 'Helvetica';"
             @click="toHome"
-          >CINE</v-btn>
+          >CINEMAPP</v-btn>
         </v-toolbar-title>
       </v-toolbar>
     </v-card>
