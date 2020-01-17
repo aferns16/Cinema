@@ -4,7 +4,12 @@
       <v-toolbar dark height="90px" color="black">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title id="game">
-          <span style="font-size: 20pt; font-family: 'Helvetica'; ">CINE</span>
+          <v-btn
+            color="black"
+            depressed
+            style="font-size: 20pt; font-family: 'Helvetica';"
+            @click="toHome"
+          >CINE</v-btn>
         </v-toolbar-title>
       </v-toolbar>
     </v-card>
@@ -15,7 +20,7 @@
           <v-icon large>mdi-menu</v-icon>
         </v-list-item-avatar>
 
-        <v-list-item-title>Menú</v-list-item-title>
+        <v-list-item-title style="font-size: 15pt">Menú</v-list-item-title>
 
         <v-btn icon @click.stop="drawer = !drawer">
           <v-icon>mdi-chevron-left</v-icon>
@@ -28,10 +33,10 @@
         <v-list-item-group>
           <v-list-item v-for="item in items" :key="item.title" :to="item.link">
             <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon size="30">{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title style="font-size: 13pt">{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -52,13 +57,13 @@ export default {
     return {
       drawer: false,
 
-      items: [
-        { title: "Inicio", icon: "mdi-home", link: "/" },
-        { title: "Pelicula", icon: "mdi-help", link: "/pelicula" },
-        { title: "Entrada", icon: "mdi-help", link: "/entradas" },
-        { title: "Compra", icon: "mdi-help", link: "/compra" }
-      ]
+      items: [{ title: "Inicio", icon: "mdi-home", link: "/" }]
     };
+  },
+  methods: {
+    toHome: function() {
+      this.$router.push("/");
+    }
   }
 };
 </script>

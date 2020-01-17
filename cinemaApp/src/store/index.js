@@ -8,13 +8,17 @@ export default new Vuex.Store({
     getPelicula: state => state.pelicula,
     getEntradas: state => state.entradas,
     getPrecioTotal: state => state.precioTotal,
-    getDescuentos: state => state.descuentos
+    getDescuentos: state => state.descuentos,
+    getHora: state => state.hora,
+    getNombreDescuento: state => state.nombreDescuento
   },
   state: {
     pelicula: "",
     entradas: 0,
     precioTotal: 0,
-    descuentos: 0
+    descuentos: 0,
+    nombreDescuento: "",
+    hora: ""
   },
   mutations: {
     update_pelicula(state, pelicula) {
@@ -28,6 +32,12 @@ export default new Vuex.Store({
     },
     update_descuentos(state, descuentos) {
       state.descuentos = descuentos;
+    },
+    update_nombreDescuento(state, nombre) {
+      state.nombreDescuento = nombre;
+    },
+    update_hora(state, hora) {
+      state.hora = hora;
     }
   },
   actions: {
@@ -42,6 +52,12 @@ export default new Vuex.Store({
     },
     setDescuentos({ commit }, descuentos) {
       commit("update_descuentos", descuentos);
+    },
+    setNombreDescuento({ commit }, nombre) {
+      commit("update_nombreDescuento", nombre);
+    },
+    setSesion({ commit }, hora) {
+      commit("update_hora", hora);
     }
   },
   modules: {}

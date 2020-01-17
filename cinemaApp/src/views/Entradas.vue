@@ -1,12 +1,21 @@
 <template>
   <v-app style="background: black">
+    <v-row align="start" justify="start">
+      <v-btn large color="black" dark to="Pelicula">
+        <vue-fontawesome icon="arrow-left" size="3"></vue-fontawesome>
+      </v-btn>
+    </v-row>
     <v-content>
       <v-container wrap>
-        <v-row justify-center align-center>
+        <v-row justify-center align-center dark>
           <v-col>
             <v-toolbar dark height="150px" color="black">
               <v-toolbar-title style="font-size: 50pt; font-family: 'Helvetica'; ">Asientos</v-toolbar-title>
             </v-toolbar>
+            <font
+              color="white"
+              size="110%"
+            >{{ this.$store.getters.getPelicula }} | {{ this.$store.getters.getHora}}</font>
           </v-col>
         </v-row>
         <v-row justify-center align-center>
@@ -85,9 +94,6 @@
           <v-col></v-col>
         </v-row>
         <v-row>
-          <v-col>
-            <v-btn to="Pelicula" dark>Volver</v-btn>
-          </v-col>
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
@@ -95,7 +101,7 @@
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
           <v-col>
-            <v-btn to="Compra" dark>Continuar</v-btn>
+            <v-btn large @click="toCompra" dark>Continuar</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -111,10 +117,10 @@ export default {
   data() {
     return {
       entradas: 1,
-      descuentos: "Ninguno",
+      descuentos: "(Ninguno)",
       precio: 6,
       filters1: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-      filters: ["Ninguno", "Estudiante", "Jubilado", "Familia numerosa"],
+      filters: ["(Ninguno)", "Estudiante", "Jubilado", "Familia numerosa"],
       asientosDisponibles:
         "http://gobiznext.com/wp-content/uploads/2016/10/Mejores-lugares.jpg"
     };
@@ -131,7 +137,29 @@ export default {
       return this.precio + " €";
     }
   },
-  methods: {}
+  methods: {
+    toCompra: function() {
+      var valor = 0;
+      if (this.descuentos == "Familia numerosa") valor = -1.4;
+      if (this.descuentos == "Jubilado") valor = -1.0;
+      if (this.descuentos == "Estudiante") valor = -1.2;
+      if (this.descuentos == "(Ninguno)") valor = -0.0;
+      this.$store.dispatch("setEntradas", this.entradas).then(() => {
+        this.$store.dispatch("setPrecio", this.precioTotal).then(() => {
+          this.$store.dispatch("setDescuentos", valor).then(() => {
+            this.$store
+              .dispatch("setNombreDescuento", this.descuentos)
+              .then(() => {
+                this.$router.push("Compra");
+              });
+          });
+        });
+      });
+    }
+  },
+  mounted() {
+    document.documentElement.scrollTop = 0;
+  }
 };
 </script>
 <style type="text/css">

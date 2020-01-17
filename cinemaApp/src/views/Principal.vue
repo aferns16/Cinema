@@ -1,19 +1,18 @@
  <template>
   <v-app>
-    <v-content height="920">
-      <v-carousel
-        height="920"
-        hide-delimiter-background
-        show-arrows-on-hover
-        align="center"
-        justify="center"
-        background="black"
-      >
-        <v-carousel-item v-for="(video, i) in this.videos" :key="i" position="center">
-          <youtube fitParent :video-id="video.videoId" :player-vars="video.playerVars"></youtube>
-        </v-carousel-item>
-      </v-carousel>
-    </v-content>
+    <v-carousel
+      height="920"
+      hide-delimiter-background
+      show-arrows-on-hover
+      align="center"
+      justify="center"
+      background="black"
+    >
+      <v-carousel-item v-for="(video, i) in this.videos" :key="i" position="center">
+        <youtube fitParent :video-id="video.videoId" :player-vars="video.playerVars"></youtube>
+      </v-carousel-item>
+    </v-carousel>
+
     <v-card color="indigo lighten-2" height="150px">
       <v-toolbar dark height="150px" color="black">
         <v-toolbar-title id="game">
@@ -47,33 +46,32 @@
     </v-card>
 
     <v-divider></v-divider>
-    <v-content>
-      <v-container grid-list-md text-xs-center fluid>
-        <v-layout wrap fill-width fill-height>
-          <v-flex v-for="pelicula in filteredList" :key="pelicula.id" xs3 d-flex>
-            <v-card dark @click="toPelicula(pelicula.title)">
-              <v-hover v-slot:default="{ hover }">
-                <v-img
-                  :src="pelicula.src"
-                  height="500px"
-                  width="400px"
-                  aspect-ratio="1.7"
-                  :alt="pelicula.alt"
-                >
-                  <v-expand-transition>
-                    <div
-                      v-if="hover"
-                      class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
-                      style="height: 100%;"
-                    >{{pelicula.title}}</div>
-                  </v-expand-transition>
-                </v-img>
-              </v-hover>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
+
+    <v-container grid-list-md text-xs-center fluid>
+      <v-layout wrap fill-width fill-height>
+        <v-flex v-for="pelicula in filteredList" :key="pelicula.id" xs3 d-flex>
+          <v-card dark @click="toPelicula(pelicula.title)">
+            <v-hover v-slot:default="{ hover }">
+              <v-img
+                :src="pelicula.src"
+                height="500px"
+                width="400px"
+                aspect-ratio="1.7"
+                :alt="pelicula.alt"
+              >
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                    style="height: 100%;"
+                  >{{pelicula.title}}</div>
+                </v-expand-transition>
+              </v-img>
+            </v-hover>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-app>
 </template>
 <script>

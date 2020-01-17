@@ -1,5 +1,10 @@
 <template>
   <v-app style="background: black">
+    <v-row align="start" justify="start">
+      <v-btn large color="black" dark to="/">
+        <vue-fontawesome icon="arrow-left" size="3"></vue-fontawesome>
+      </v-btn>
+    </v-row>
     <v-container bg grid-list-md text-xs-center>
       <v-row>
         <v-col></v-col>
@@ -34,21 +39,39 @@
         >Director: {{pelicula.director}} | País: {{pelicula.pais}} | Duración: {{pelicula.duracion}} | Fecha de estreno: {{pelicula.estreno}} | Género: {{pelicula.genero}}</span>
       </p>
       <!--Selector de sesión para comprar entrada-->
-      <v-carousel :show-arrows="showArrows" :hide-delimiters="hideDelimiters" :cycle="cycle">
+      <v-carousel
+        :show-arrows="showArrows"
+        :hide-delimiters="hideDelimiters"
+        :cycle="cycle"
+        v-model="sesion"
+      >
         <v-carousel-item v-for="(sesion, i) in sesiones" :key="sesion">
           <v-sheet color="black" height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">
-                {{ sesiones[i]}}
-                <v-img :alt='altTicket' aspect-ratio="1.7" height="50px" width="50px" :src="imgTicket" @click="compra"></v-img>
+              <div class="display-3" align="center" justify="center">
+                {{ sesiones[i] }}
+                <br />
+                <br />
+                <v-img
+                  :alt="altTicket"
+                  aspect-ratio="1.7"
+                  height="70px"
+                  width="70px"
+                  :src="imgTicket"
+                  @click="compra"
+                ></v-img>
               </div>
             </v-row>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
-      <p>
-        <span style="color: #FFFF">Elije sesión y pulsa en el ticket para comprar tu entrada</span>
-      </p>
+      <br />
+      <br />
+      <v-row class="fill-height" align="center" justify="center">
+        <p
+          style="color: #FFFF"
+        >Elige sesión y pulsa en el ticket para comprar tu entrada para hoy, {{timestamp}}</p>
+      </v-row>
     </v-container>
     <!--/ENDOFSelector-->
     <!--TresCol Información Película-->
@@ -258,20 +281,60 @@ export default {
         "Primera Sesión: 16:30",
         "Segunda Sesión: 18:30",
         "Tercera Sesión: 20:30",
-        "Sesión de Noche: 22:30",
+        "Sesión de Noche: 22:30"
       ],
-      imgTicket: "https://raw.githubusercontent.com/aferns16/Cinema/master/cinemaApp/src/assets/ticket.jpg?token=AF4O43NXYJRFSXMOTWCWULS6FLHLA",
+      sesion: 0,
+      timestamp: "",
+      imgTicket:
+        "https://raw.githubusercontent.com/aferns16/Cinema/master/cinemaApp/src/assets/ticket.jpg?token=AF4O43NXYJRFSXMOTWCWULS6FLHLA",
       altTicket: "Ticket: Comprar entrada para esta sesión",
-      imagenes: ["prime", "seg", "ter"],
       showArrows: true,
       hideDelimiters: false,
       cycle: false
     };
   },
   methods: {
+    getNow: function() {
+      const today = new Date();
+      var mes = "";
+      if (today.getMonth() + 1 == 1) {
+        mes = "enero";
+      } else if (today.getMonth() + 1 == 2) {
+        mes = "febrero";
+      } else if (today.getMonth() + 1 == 3) {
+        mes = "marzo";
+      } else if (today.getMonth() + 1 == 4) {
+        mes = "abril";
+      } else if (today.getMonth() + 1 == 5) {
+        mes = "mayo";
+      } else if (today.getMonth() + 1 == 6) {
+        mes = "junio";
+      } else if (today.getMonth() + 1 == 7) {
+        mes = "julio";
+      } else if (today.getMonth() + 1 == 8) {
+        mes = "agosto";
+      } else if (today.getMonth() + 1 == 9) {
+        mes = "septiembre";
+      } else if (today.getMonth() + 1 == 10) {
+        mes = "octubre";
+      } else if (today.getMonth() + 1 == 11) {
+        mes = "noviembre";
+      } else if (today.getMonth() + 1 == 12) {
+        mes = "diciembre";
+      }
+      const date =
+        today.getDate() + " de " + mes + " de " + today.getFullYear();
+      this.timestamp = date;
+    },
     compra: function() {
-      alert("Comprar esta sesion");
-      this.$router.push("Entradas");
+      var hora;
+      if (this.sesion == 0) hora = "16:30";
+      if (this.sesion == 1) hora = "18:30";
+      if (this.sesion == 2) hora = "20:30";
+      if (this.sesion == 3) hora = "22:30";
+      this.$store.dispatch("setSesion", hora).then(() => {
+        this.$router.push("Entradas");
+      });
     },
     onEnterFind: function() {
       alert("Enter was pressed");
@@ -281,6 +344,7 @@ export default {
     }
   },
   mounted() {
+    setInterval(this.getNow, 1000);
     document.documentElement.scrollTop = 0;
     var peli = this.$store.getters.getPelicula;
     if (peli == "Frozen 2") {
