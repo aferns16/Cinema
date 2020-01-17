@@ -161,7 +161,7 @@ export default {
           genero: "Comedia/Romántico",
           sinopsisPelicula:
             "Kate (Emilia Clarke) deambula amargada por las calles de Londres, acompañada por el continuo tintineo de los cascabeles de sus zapatos, porque trabaja como elfo en una tienda navideña que abre todo el año. Cuando Tom (Henry Golding) aparece en su vida, Kate empieza a ver las cosas de otra manera más optimista, aunque parezca demasiado idílico para ser verdad. Pero al llegar la Navidad, todo parece ponerse en contra de la pareja. Eso sí, se darán cuenta de que lo importante será escuchar a su corazón.",
-          idVideo: "z9CEIcmWmtA",
+          idVideo: "4K5SaPV79sc",
           director: "Paul Feig",
           pais: "Gran Bretaña, EEUU",
           reparto:
@@ -220,7 +220,7 @@ export default {
           genero: "Aventura/Comedia",
           sinopsisPelicula:
             "Secuela de Jumanji: Bienvenidos a la jungla (2017). En esta ocasión, continúan las aventuras en el fantástico mundo del juego Jumanji, donde los jugadores no pueden abandonar el juego hasta que acabe la partida. Vuelve la misma pandilla que conocemos pero el juego ha cambiado: sus personajes se han intercambiado entre sí, son los mismos héroes pero con distinta apariencia. Con el objetivo de rescatar a uno de los suyos, los jugadores vivirán emocionantes y divertidas aventuras en lugares desconocidos e inexplorados.",
-          idVideo: "rBxcF-r9Ibs",
+          idVideo: "YOpySpo2Kig",
           director: "Jake Kasdan",
           pais: "EEUU",
           reparto:
@@ -240,7 +240,7 @@ export default {
           genero: "Guerra/Comedia",
           sinopsisPelicula:
             "Jojo Betzler (Roman Griffin Davis) es un solitario chico alemán que pertenece a las juventudes hitlerianas. Su mundo se pondrá patas arriba cuando descubre que su madre, Rosie (Scarlett Johansson), una mujer soltera, está escondiendo a Elsa (Thomasin McKenzie), una joven judía, en su propia casa. Ayudado por su amigo imaginario, Adolf Hitler (Taika Waititi), Jojo deberá afrontar su ciego nacionalismo con las contradicciones de una guerra absurda. Película basada en la novela de Christine Leunens.",
-          idVideo: "tL4McUzXfFI",
+          idVideo: "6_iV8YOfn_A",
           director: "Taika Waititi",
           pais: "EEUU",
           reparto:
